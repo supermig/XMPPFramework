@@ -59,6 +59,8 @@
 	dispatch_source_t reconnectTimer;
 	NSTimeInterval reconnectTimerInterval;
 	
+	NSTimeInterval xmppStreamConnectionTimeout;
+	
 	SCNetworkReachabilityRef reachability;
 	
 	int reconnectTicket;
