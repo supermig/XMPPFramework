@@ -111,6 +111,12 @@
 @property (nonatomic, assign) NSTimeInterval reconnectTimerInterval;
 
 /**
+ * While invoke [xmppStream connectWithTimeout:error], this variable is the timeout value.
+ * Its default value is XMPPStreamTimeoutNone(-1), at this time, it same to original version.
+**/
+@property (nonatomic, assign) NSTimeInterval xmppStreamConnectionTimeout;
+
+/**
  * Whether you want to reconnect using the legacy method -[XMPPStream oldSchoolSecureConnectWithTimeout:error:]
  * instead of the standard -[XMPPStream connect:].
  *
