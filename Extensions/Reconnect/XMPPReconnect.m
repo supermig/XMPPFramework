@@ -57,6 +57,7 @@ typedef SCNetworkConnectionFlags SCNetworkReachabilityFlags;
 @dynamic    autoReconnect;
 @synthesize reconnectDelay;
 @synthesize reconnectTimerInterval;
+@synthesize xmppStreamConnectionTimeout;
 
 - (id)init
 {
@@ -72,6 +73,8 @@ typedef SCNetworkConnectionFlags SCNetworkReachabilityFlags;
 		
 		reconnectDelay = DEFAULT_XMPP_RECONNECT_DELAY;
 		reconnectTimerInterval = DEFAULT_XMPP_RECONNECT_TIMER_INTERVAL;
+		
+		xmppStreamConnectionTimeout = XMPPStreamTimeoutNone;
 		
 		reconnectTicket = 0;
 		
@@ -599,11 +602,11 @@ static void XMPPReconnectReachabilityCallback(SCNetworkReachabilityRef target, S
 						
                         if (self.usesOldSchoolSecureConnect)
                         {
-                            [xmppStream oldSchoolSecureConnectWithTimeout:XMPPStreamTimeoutNone error:nil];
+                            [xmppStream oldSchoolSecureConnectWithTimeout:self.xmppStreamConnectionTimeout error:nil];
                         }
                         else
                         {
-                            [xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:nil];
+                            [xmppStream connectWithTimeout:self.xmppStreamConnectionTimeout error:nil];
                         }
 					}
 					else if ([self multipleReachabilityChanges])
